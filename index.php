@@ -1,12 +1,12 @@
 <?php
+    include './crud/db.php';
+
     $param = isset($_GET['category']);
     if ($param) {
         $cat = $_GET['category'];
     } else {
         $cat = "A";
     }
-    
-    // $pageno = isset($_GET['pageno']) ? $_GET['pageno'] + 1: 1 ; 
 ?>
 
 <!DOCTYPE html>
@@ -25,9 +25,35 @@
         <p hidden id="cat"><?php echo $cat ?></p>
         <p hidden id="char"><?php echo isset($_GET['id']) ? $_GET['id'] : 0 ?></p>
         <p hidden id="page"><?php echo isset($_GET['pageno']) ? $_GET['pageno'] : 1 ?></p>
+
         <div class="modal-container">
             <div id="modal">
-                <div class="modal-box" >
+                <div class="modal-box">
+                    <?php
+                    
+                    $modal = isset($_GET['modal']);
+
+                    if($modal){
+
+                    ?>
+                    <form action="">
+                        <h2>Delete Confirmation</h2>
+                        <p>id</p>
+                        <input type="text">
+                        <p>Name</p>
+                        <input type="text">
+                        <p>Type</p>
+                        <input type="text">
+                        <p>Short description</p>
+                        <input type="text">
+                        <p>Description</p>
+                        <input type="text">
+                    </form>
+                    <?php 
+                    
+                    } else{
+                        
+                    ?>
                     <img src="" alt="character" class="modal-card mode">
                     <div class="modal-description-box">
                         <a href="index.php?category=<?php echo $_GET['category'] ?>"><img src="images/Logo/cross.png"
@@ -36,6 +62,8 @@
                         <p class="modal-type mode"></p>
                         <p class="modal-description mode"> </p>
                     </div>
+                        
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -69,7 +97,6 @@
                 </div>
             </center>
         </div>
-    </div>
     </div>
     <script src="./scripts/index.js" type="module"></script>
 </body>
